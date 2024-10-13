@@ -20,21 +20,23 @@ const ChatForm = () => {
 
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
+      const data = new URLSearchParams();
+      data.set('message', message.message)
+      data.set('author', message.author)
 
-    const data = new URLSearchParams();
-    data.set('message', message.message)
-    data.set('author', message.author)
+      await fetch('http://146.185.154.90:8000/messages', {
+        method: 'POST',
+        body: data,
+      })
 
-    await fetch('http://146.185.154.90:8000/messages', {
-      method: 'POST',
-      body: data,
-    })
-
-    setMessage({
-      message: '',
-      author: '',
-    });
-    console.log(message)
+      setMessage({
+        message: '',
+        author: '',
+      });
+    } catch (error) {
+      alert(error);
+    }
   }
 
   return (
