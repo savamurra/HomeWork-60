@@ -63,7 +63,7 @@ const ChatForm = () => {
           onChange={changeMessage}
         />
       </Form.Group>
-      <Button type='submit' variant="info" style={{marginRight: '440px'}}>Send</Button>
+      <Button type='submit' variant="primary" style={{marginRight: '440px'}}>Send</Button>
     </Form>
   );
 };

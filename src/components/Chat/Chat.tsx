@@ -60,18 +60,16 @@ const Chat = () => {
   return (
     <div className="chatWindow" style={{border: '2px solid #eee', padding: '5px', borderRadius: '10px'}}>
       <h1 style={{textTransform: 'uppercase', textAlign: "center", fontSize: "24px", padding: '10px'}}>Mobile Chat</h1>
-      <ListGroup>
         {chat.slice().reverse().map(item => (
-          <div key={item._id + crypto.randomUUID()} style={{padding: '10px', borderRadius: '5px'}}>
+          <ListGroup key={item._id + crypto.randomUUID()} style={{padding: '10px', borderRadius: '5px'}}>
             <ListGroup.Item>
               <strong>{item.author}</strong>
             </ListGroup.Item>
             <ListGroup.Item className={'d-flex justify-content-between'}>
               {item.message} <span style={{borderLeft: '2px solid #eee', paddingLeft: '10px'}}>{new Date(item.datetime).toLocaleTimeString()}</span>
             </ListGroup.Item>
-          </div>
+          </ListGroup>
         ))}
-      </ListGroup>
     </div>
   );
 };
