@@ -1,13 +1,11 @@
-import { Button, Form } from 'react-bootstrap';
-import { useState } from 'react';
+import { Button, Form } from "react-bootstrap";
+import { useState } from "react";
 
 const ChatForm = () => {
-
   const [message, setMessage] = useState({
-    message: '',
-    author: '',
+    message: "",
+    author: "",
   });
-
 
   const changeMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMessage((prevState) => {
@@ -22,22 +20,22 @@ const ChatForm = () => {
     e.preventDefault();
     try {
       const data = new URLSearchParams();
-      data.set('message', message.message)
-      data.set('author', message.author)
+      data.set("message", message.message);
+      data.set("author", message.author);
 
-      await fetch('http://146.185.154.90:8000/messages', {
-        method: 'POST',
+      await fetch("http://146.185.154.90:8000/messages", {
+        method: "POST",
         body: data,
-      })
+      });
 
       setMessage({
-        message: '',
-        author: '',
+        message: "",
+        author: "",
       });
     } catch (error) {
       alert(error);
     }
-  }
+  };
 
   return (
     <Form onSubmit={sendMessage}>
@@ -56,14 +54,16 @@ const ChatForm = () => {
         <Form.Label>Message</Form.Label>
         <Form.Control
           type="text"
-          name='message'
+          name="message"
           id="message"
           placeholder="Сообщение"
           value={message.message}
           onChange={changeMessage}
         />
       </Form.Group>
-      <Button type='submit' variant="primary" style={{marginRight: '440px'}}>Send</Button>
+      <Button type="submit" variant="primary" style={{ marginRight: "440px" }}>
+        Send
+      </Button>
     </Form>
   );
 };
